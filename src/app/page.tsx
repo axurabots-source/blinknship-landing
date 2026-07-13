@@ -1,0 +1,25 @@
+import Navbar from "@/components/layout/Navbar";
+import Hero from "@/components/sections/Hero";
+import Marquee from "@/components/sections/Marquee";
+import Features from "@/components/sections/Features";
+import HowItWorks from "@/components/sections/HowItWorks";
+import Pricing from "@/components/sections/Pricing";
+import FAQ from "@/components/sections/FAQ";
+import CTA from "@/components/sections/CTA";
+import Footer from "@/components/layout/Footer";
+
+export default function Home() {
+  return (
+    <main>
+      <Navbar />
+      <Hero />
+      <Marquee />
+      <Features />
+      <HowItWorks />
+      <Pricing />
+      <FAQ />
+      <CTA />
+      <Footer />
+    </main>
+  );
+}
