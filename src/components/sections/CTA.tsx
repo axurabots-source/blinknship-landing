@@ -65,22 +65,24 @@ export default function CTA() {
                             transition={{ duration: 0.5, delay: 0.3 }}
                             className="flex flex-col sm:flex-row items-center justify-center gap-3"
                         >
-                            <motion.button
+                            <motion.a
+                                href="/pricing"
                                 whileHover={{ scale: 1.05, boxShadow: "0 12px 40px rgba(204,120,92,0.5)" }}
                                 whileTap={{ scale: 0.97 }}
                                 transition={{ type: "spring", stiffness: 400, damping: 12 }}
                                 className="font-manrope font-semibold text-white bg-primary px-10 py-4 rounded-full cursor-pointer text-[15px] shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-shadow duration-300"
                             >
                                 Start Free Trial — 30 Days
-                            </motion.button>
-                            <motion.button
+                            </motion.a>
+                            <motion.a
+                                href="/pricing"
                                 whileHover={{ scale: 1.05, borderColor: "#CC785C", color: "#CC785C", boxShadow: "0 8px 30px rgba(204,120,92,0.2)" }}
                                 whileTap={{ scale: 0.97 }}
                                 transition={{ type: "spring", stiffness: 400, damping: 12 }}
                                 className="font-manrope font-semibold text-white/70 border-2 border-white/20 px-10 py-4 rounded-full cursor-pointer text-[15px] hover:border-primary/50 hover:text-primary hover:bg-white/5 transition-all duration-300"
                             >
                                 View Pricing →
-                            </motion.button>
+                            </motion.a>
                         </motion.div>
 
                         <p className="font-inter text-xs text-white/25 mt-5">

@@ -138,14 +138,15 @@ export default function HowItWorks() {
                     transition={{ duration: 0.6 }}
                     className="text-center mt-20"
                 >
-                    <motion.button
+                    <motion.a
+                        href="/pricing"
                         whileHover={{ scale: 1.05, boxShadow: "0 12px 40px rgba(204,120,92,0.5)" }}
                         whileTap={{ scale: 0.97 }}
                         transition={{ type: "spring", stiffness: 400, damping: 12 }}
                         className="font-manrope font-semibold text-white bg-primary px-10 py-4 rounded-full cursor-pointer text-[15px] shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-shadow duration-300"
                     >
                         Get Started Free
-                    </motion.button>
+                    </motion.a>
                     <p className="font-inter text-xs text-white/30 mt-3">
                         No credit card required · 30 days free
                     </p>

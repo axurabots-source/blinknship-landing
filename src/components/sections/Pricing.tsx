@@ -111,7 +111,8 @@ export default function Pricing() {
                                 </p>
                             </div>
                         </div>
-                        <motion.button
+                        <motion.a
+                            href="/pricing"
                             whileHover={{ scale: 1.05, boxShadow: "0 12px 40px rgba(204,120,92,0.5)" }}
                             whileTap={{ scale: 0.95 }}
                             transition={{ type: "spring", stiffness: 400, damping: 12 }}
@@ -119,7 +120,7 @@ export default function Pricing() {
                         >
                             <Zap size={16} />
                             Claim Your Spot
-                        </motion.button>
+                        </motion.a>
                     </div>
                 </motion.div>
 
@@ -213,7 +214,8 @@ export default function Pricing() {
                                     ))}
                                 </ul>
 
-                                <motion.button
+                                <motion.a
+                                    href="/pricing"
                                     whileHover={{
                                         scale: 1.03,
                                         boxShadow: plan.highlighted ? "0 12px 40px rgba(204,120,92,0.5)" : "0 8px 30px rgba(0,0,0,0.12)",
@@ -226,7 +228,7 @@ export default function Pricing() {
                                         }`}
                                 >
                                     {plan.cta}
-                                </motion.button>
+                                </motion.a>
                             </motion.div>
                         );
                     })}

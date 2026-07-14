@@ -314,7 +314,7 @@ export default function Hero() {
             >
                 <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                 <span className="font-inter text-xs font-medium text-primary tracking-wide uppercase">
-                    3D Closed-Loop Vector Engine Active
+                    Your Ecomerce Operating System
                 </span>
             </motion.div>
 
@@ -359,22 +359,24 @@ export default function Hero() {
                 transition={{ duration: 0.6, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 className="flex flex-col sm:flex-row items-center gap-4 mb-16 relative z-10"
             >
-                <motion.button
+                <motion.a
+                    href="/pricing"
                     whileHover={{ scale: 1.05, boxShadow: "0 12px 40px rgba(204,120,92,0.4)" }}
                     whileTap={{ scale: 0.97 }}
                     transition={{ type: "spring", stiffness: 400, damping: 15 }}
                     className="font-manrope font-semibold text-white bg-primary px-8 py-4 rounded-full cursor-pointer text-[15px] shadow-lg shadow-primary/30"
                 >
                     Start Free — 30 Days
-                </motion.button>
-                <motion.button
+                </motion.a>
+                <motion.a
+                    href="/how-it-works"
                     whileHover={{ scale: 1.05, borderColor: "#CC785C", color: "#CC785C", boxShadow: "0 8px 30px rgba(204,120,92,0.15)" }}
                     whileTap={{ scale: 0.97 }}
                     transition={{ type: "spring", stiffness: 400, damping: 15 }}
                     className="font-manrope font-semibold text-muted border-2 border-border bg-white px-8 py-4 rounded-full cursor-pointer text-[15px] hover:border-primary/40 hover:bg-primary-light/30 transition-all duration-300"
                 >
                     See How It Works ↓
-                </motion.button>
+                </motion.a>
             </motion.div>
 
             <div ref={pillsRowRef} className="w-full max-w-4xl relative z-10">

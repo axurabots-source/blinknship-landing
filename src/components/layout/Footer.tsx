@@ -7,10 +7,24 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FOOTER_LINKS = {
-    Product: ["Features", "How It Works", "Pricing", "Changelog"],
-    Company: ["About", "Blog", "Careers", "Contact"],
-    Legal: ["Privacy Policy", "Terms of Service", "Refund Policy"],
+const FOOTER_LINKS: Record<string, { label: string; href: string }[]> = {
+    Product: [
+        { label: "Features", href: "/features" },
+        { label: "How It Works", href: "/how-it-works" },
+        { label: "Pricing", href: "/#pricing" },
+        { label: "FAQ", href: "/#faq" },
+    ],
+    Company: [
+        { label: "About", href: "/about" },
+        { label: "Blog", href: "/blog" },
+        { label: "Careers", href: "/careers" },
+        { label: "Contact", href: "mailto:hello@blinknship.com" },
+    ],
+    Legal: [
+        { label: "Privacy Policy", href: "/privacy" },
+        { label: "Terms of Service", href: "/terms" },
+        { label: "Refund Policy", href: "/refund" },
+    ],
 };
 
 export default function Footer() {
@@ -69,12 +83,12 @@ export default function Footer() {
                             </h4>
                             <ul className="flex flex-col gap-3">
                                 {links.map((link) => (
-                                    <li key={link}>
+                                    <li key={link.label}>
                                         <a
-                                            href="#"
+                                            href={link.href}
                                             className="font-inter text-sm text-white/40 hover:text-white/80 transition-colors duration-200"
                                         >
-                                            {link}
+                                            {link.label}
                                         </a>
                                     </li>
                                 ))}
@@ -97,12 +111,11 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div ref={bigTextRef} className="relative mt-4 overflow-hidden w-full -mx-6 sm:-mx-0 h-28 md:h-40 lg:h-56">
+            <div ref={bigTextRef} className="relative mt-4 w-full overflow-hidden h-28 sm:h-40 md:h-44 lg:h-56 flex items-end justify-center">
                 <div className="absolute inset-0 bg-gradient-to-r from-dark/40 via-transparent to-dark/40 z-10 pointer-events-none" />
 
                 <h2
-                    className="absolute bottom-0 left-0 right-0 font-manrope font-extrabold text-center select-none pointer-events-none whitespace-nowrap text-8xl md:text-9xl lg:text-[12rem] xl:text-[14rem] leading-[0.8] tracking-[-0.05em] bg-gradient-to-b from-white/30 to-transparent bg-clip-text text-transparent"
-                    style={{ transform: "translateY(8%)" }}
+                    className="font-manrope font-extrabold text-center select-none pointer-events-none whitespace-nowrap leading-[0.8] tracking-[-0.05em] bg-gradient-to-b from-white/30 to-transparent bg-clip-text text-transparent text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] xl:text-[14rem]"
                 >
                     BLINK N SHIP
                 </h2>
