@@ -147,8 +147,8 @@ export default function HowItWorks() {
                     >
                         Get Started Free
                     </motion.a>
-                    <p className="font-inter text-xs text-white/30 mt-3">
-                        No credit card required · 30 days free
+                    <p className="font-inter text-xs text-white/30 mt-5 tracking-wide">
+                        No credit card required&nbsp;&nbsp;·&nbsp;&nbsp;30 days free
                     </p>
                 </motion.div>
             </div>

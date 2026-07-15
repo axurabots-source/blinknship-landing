@@ -326,20 +326,20 @@ export default function Hero() {
                 aria-level={1}
             >
                 <span className="word font-manrope font-extrabold text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.15] tracking-tight select-none"
-                    style={{ color: "#CC785C" }}>One</span>
+                    style={{ color: "#CC785C", opacity: 0 }}>One</span>
                 <span className="word font-manrope font-extrabold text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.15] tracking-tight select-none"
-                    style={{ color: "#0a0a0a" }}>Platform.</span>
+                    style={{ color: "#0a0a0a", opacity: 0 }}>Platform.</span>
                 <span className="word font-manrope font-extrabold text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.15] tracking-tight select-none"
-                    style={{ color: "#0a0a0a" }}>Every</span>
+                    style={{ color: "#0a0a0a", opacity: 0 }}>Every</span>
 
                 <span className="w-full hidden sm:block" />
 
                 <span className="word font-manrope font-extrabold text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.15] tracking-tight select-none"
-                    style={{ color: "#0a0a0a" }}>Operation.</span>
+                    style={{ color: "#0a0a0a", opacity: 0 }}>Operation.</span>
                 <span className="word font-manrope font-extrabold text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.15] tracking-tight select-none"
-                    style={{ color: "#CC785C" }}>Zero</span>
+                    style={{ color: "#CC785C", opacity: 0 }}>Zero</span>
                 <span className="word font-manrope font-extrabold text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.15] tracking-tight select-none"
-                    style={{ color: "#0a0a0a" }}>Chaos.</span>
+                    style={{ color: "#0a0a0a", opacity: 0 }}>Chaos.</span>
             </div>
 
             <motion.p
@@ -379,7 +379,7 @@ export default function Hero() {
                 </motion.a>
             </motion.div>
 
-            <div ref={pillsRowRef} className="w-full max-w-4xl relative z-10">
+            <div ref={pillsRowRef} className="w-full max-w-4xl relative z-10" style={{ opacity: 0 }}>
                 <p className="font-inter text-xs text-muted text-center mb-4 tracking-widest uppercase">
                     Your entire workflow — automated
                 </p>

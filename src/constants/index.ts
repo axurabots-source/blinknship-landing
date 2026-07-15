@@ -561,7 +561,6 @@ export const FEATURES_PAGE = {
             ],
             visual: {
                 icon: "MessageSquare",
-                color: "from-amber-500 to-orange-600",
             },
         },
         {
@@ -580,7 +579,6 @@ export const FEATURES_PAGE = {
             ],
             visual: {
                 icon: "Truck",
-                color: "from-blue-500 to-indigo-600",
             },
         },
         {
@@ -599,7 +597,6 @@ export const FEATURES_PAGE = {
             ],
             visual: {
                 icon: "BarChart3",
-                color: "from-emerald-500 to-teal-600",
             },
         },
     ],

@@ -222,7 +222,7 @@ export default function Pricing() {
                                     }}
                                     whileTap={{ scale: 0.97 }}
                                     transition={{ type: "spring", stiffness: 400, damping: 12 }}
-                                    className={`w-full font-manrope font-semibold text-sm py-3.5 rounded-full cursor-pointer transition-all duration-300 ${plan.highlighted
+                                    className={`w-full font-manrope font-semibold text-sm py-3.5 rounded-full cursor-pointer transition-all duration-300 text-center ${plan.highlighted
                                             ? "bg-primary text-white shadow-lg shadow-primary/30 hover:bg-primary-hover"
                                             : "bg-card text-foreground border border-border hover:bg-foreground hover:text-white hover:border-foreground"
                                         }`}

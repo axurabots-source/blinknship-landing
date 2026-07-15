@@ -154,10 +154,21 @@ function TermsContent() {
     const sectionRef = useRef<HTMLElement>(null);
     const progressRef = useRef<HTMLDivElement>(null);
     const [activeId, setActiveId] = useState(sections[0].id);
+    const [openId, setOpenId] = useState<string | null>(null);
     const observerRef = useRef<IntersectionObserver | null>(null);
     const sectionElsRef = useRef<(HTMLElement | null)[]>([]);
+    const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const [isMobile, setIsMobile] = useState(true);
 
     useEffect(() => {
+        const check = () => setIsMobile(window.innerWidth < 768);
+        check();
+        window.addEventListener("resize", check);
+        return () => window.removeEventListener("resize", check);
+    }, []);
+
+    useEffect(() => {
+        if (isMobile) return;
         const ctx = gsap.context(() => {
             sectionElsRef.current.forEach((el) => {
                 if (!el) return;
@@ -177,9 +188,10 @@ function TermsContent() {
             });
         }, sectionRef);
         return () => ctx.revert();
-    }, []);
+    }, [isMobile]);
 
     useEffect(() => {
+        if (isMobile) return;
         const handleScroll = () => {
             if (!sectionRef.current || !progressRef.current) return;
             const rect = sectionRef.current.getBoundingClientRect();
@@ -190,9 +202,10 @@ function TermsContent() {
 
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [isMobile]);
 
     useEffect(() => {
+        if (isMobile) return;
         observerRef.current = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -209,12 +222,81 @@ function TermsContent() {
         });
 
         return () => observerRef.current?.disconnect();
-    }, []);
+    }, [isMobile]);
 
     const scrollToSection = (id: string) => {
         const el = document.getElementById(id);
         if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     };
+
+    const toggleAccordion = (id: string) => {
+        setOpenId((prev) => (prev === id ? null : id));
+    };
+
+    // Mobile accordion render
+    if (isMobile) {
+        return (
+            <section ref={sectionRef} className="py-16 px-4 bg-white">
+                <div className="max-w-6xl mx-auto">
+                    <span className="font-inter text-[10px] font-medium text-muted/50 uppercase tracking-widest block mb-6 px-1">
+                        Tap to expand each section
+                    </span>
+                    <div className="space-y-3">
+                        {sections.map((sec, i) => {
+                            const isOpen = openId === sec.id;
+                            return (
+                                <div
+                                    key={sec.id}
+                                    id={sec.id}
+                                    ref={(el) => { sectionElsRef.current[i] = el; }}
+                                    className={`bg-white border rounded-2xl overflow-hidden transition-all duration-300 ${
+                                        isOpen ? "border-primary/30 shadow-md shadow-primary/5" : "border-border hover:border-primary/15"
+                                    }`}
+                                >
+                                    <button
+                                        onClick={() => toggleAccordion(sec.id)}
+                                        className="w-full flex items-center gap-3 px-4 py-4 text-left cursor-pointer"
+                                    >
+                                        <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${
+                                            isOpen ? "bg-primary text-white" : "bg-primary-light text-primary"
+                                        }`}>
+                                            {SECTION_ICONS[sec.icon] || <FileText size={16} />}
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <div className="flex items-center gap-1.5 mb-0.5">
+                                                <span className="font-manrope font-bold text-foreground text-sm leading-tight line-clamp-1">
+                                                    {sec.title}
+                                                </span>
+                                            </div>
+                                            <span className="font-inter text-[10px] text-muted/50 font-medium">
+                                                {sec.number}
+                                            </span>
+                                        </div>
+                                        <div className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 ${
+                                            isOpen ? "bg-primary/10 rotate-180" : "bg-card"
+                                        }`}>
+                                            <ChevronRight size={14} className={`text-muted transition-transform duration-300 ${isOpen ? "rotate-90" : ""}`} />
+                                        </div>
+                                    </button>
+                                    <div
+                                        ref={(el) => { contentRefs.current[i] = el; }}
+                                        className={`overflow-hidden transition-all duration-400 ease-in-out ${
+                                            isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+                                        }`}
+                                        style={{ transitionProperty: "max-height, opacity" }}
+                                    >
+                                        <div className="px-4 pb-5 pt-1 border-t border-border/50 mx-4">
+                                            <p className="font-inter text-sm text-muted leading-relaxed">{sec.content}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section ref={sectionRef} className="py-20 px-6 bg-white relative">
@@ -248,21 +330,6 @@ function TermsContent() {
                         ))}
                     </div>
                 </nav>
-
-                {/* Mobile section nav */}
-                <div className="lg:hidden sticky top-20 z-40 mb-4 -mx-2">
-                    <select
-                        value={activeId}
-                        onChange={(e) => scrollToSection(e.target.value)}
-                        className="w-full font-inter text-sm bg-white border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-200 shadow-sm"
-                    >
-                        {sections.map((s) => (
-                            <option key={s.id} value={s.id}>
-                                {s.number}. {s.title}
-                            </option>
-                        ))}
-                    </select>
-                </div>
 
                 {/* Sections */}
                 <div className="flex-1 min-w-0 space-y-6">

@@ -395,14 +395,79 @@ function FeatureGrid() {
     );
 }
 
+function DeepDivePanel({ item, index }: { item: (typeof deepDive)[0]; index: number }) {
+    return (
+        <div className="flex flex-col md:flex-row gap-6 md:gap-16 items-start md:items-center">
+            <div className="flex-1 w-full">
+                <div className="flex items-center gap-3 mb-3 md:mb-4">
+                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-primary/20 text-primary flex items-center justify-center">
+                        {ICON_MAP[item.visual?.icon || item.icon]}
+                    </div>
+                    <span className="font-inter text-[10px] md:text-xs font-medium text-primary tracking-widest uppercase">
+                        {item.subtitle}
+                    </span>
+                </div>
+                <h3 className="font-manrope font-bold text-white text-xl md:text-3xl mb-3 md:mb-4 leading-snug">
+                    {item.title}
+                </h3>
+                <p className="font-inter text-sm text-white/60 leading-relaxed mb-4 md:mb-6 max-w-xl">
+                    {item.description}
+                </p>
+                <div className="space-y-2 md:space-y-3">
+                    {item.steps.map((step, si) => (
+                        <div key={si} className="flex items-start gap-2 md:gap-3">
+                            <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-primary/20 text-primary text-[10px] md:text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">
+                                {si + 1}
+                            </div>
+                            <span className="font-inter text-xs md:text-sm text-white/70">{step}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <div className="flex-1 w-full max-w-sm">
+                <div className="bg-white/5 border border-white/10 rounded-2xl md:rounded-3xl p-6 md:p-8 backdrop-blur-sm">
+                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-primary flex items-center justify-center mb-4 md:mb-6">
+                        <div className="text-white scale-[0.85] md:scale-100">
+                            {ICON_MAP[item.visual?.icon || item.icon]}
+                        </div>
+                    </div>
+                    <h4 className="font-manrope font-bold text-white text-base md:text-lg mb-2 md:mb-3">
+                        {item.title}
+                    </h4>
+                    <p className="font-inter text-xs md:text-sm text-white/50 leading-relaxed">
+                        {item.steps.slice(0, 2).join(" → ")}
+                    </p>
+                    <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-white/10">
+                        <div className="flex items-center gap-2 text-primary">
+                            <ArrowRight size={14} />
+                            <span className="font-inter text-[10px] md:text-xs font-medium">
+                                Used by {stats[1].value}+ businesses
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function FeatureDeepDive() {
     const sectionRef = useRef<HTMLElement>(null);
     const pinRef = useRef<HTMLDivElement>(null);
     const progressRef = useRef<HTMLDivElement>(null);
     const panelsRef = useRef<(HTMLDivElement | null)[]>([]);
     const dotsRef = useRef<(HTMLDivElement | null)[]>([]);
+    const [isMobile, setIsMobile] = useState(true);
 
     useEffect(() => {
+        const check = () => setIsMobile(window.innerWidth < 768);
+        check();
+        window.addEventListener("resize", check);
+        return () => window.removeEventListener("resize", check);
+    }, []);
+
+    useEffect(() => {
+        if (isMobile) return;
         const panels = panelsRef.current.filter(Boolean) as HTMLDivElement[];
         const dots = dotsRef.current.filter(Boolean) as HTMLDivElement[];
         if (!pinRef.current || panels.length === 0) return;
@@ -448,7 +513,26 @@ function FeatureDeepDive() {
             }
         }, sectionRef);
         return () => ctx.revert();
-    }, []);
+    }, [isMobile]);
+
+    if (isMobile) {
+        return (
+            <section className="py-20 px-6 bg-dark">
+                <div className="max-w-7xl mx-auto">
+                    <div className="text-center mb-12">
+                        <span className="font-inter text-xs font-medium text-primary tracking-widest uppercase">
+                            AI-Powered Workflow
+                        </span>
+                    </div>
+                    <div className="space-y-16">
+                        {deepDive.map((item, i) => (
+                            <DeepDivePanel key={i} item={item} index={i} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section ref={sectionRef} className="relative" style={{ height: `${deepDive.length * 100}vh` }}>
@@ -462,20 +546,6 @@ function FeatureDeepDive() {
                 </div>
 
                 <div className="relative max-w-7xl mx-auto px-6 w-full">
-                    {/* Mobile progress dots */}
-                    <div className="flex md:hidden items-center justify-center gap-2 mb-6">
-                        {deepDive.map((_, i) => (
-                            <div
-                                key={i}
-                                ref={(el) => { dotsRef.current[i] = el; }}
-                                className={`w-2 h-2 rounded-full transition-all duration-300 ${i === 0
-                                        ? "bg-primary scale-125"
-                                        : "bg-white/20"
-                                    }`}
-                            />
-                        ))}
-                    </div>
-
                     <div className="flex gap-8 md:gap-16 items-start">
                         <div className="hidden md:flex flex-col items-center gap-4 pt-2">
                             {deepDive.map((_, i) => (
@@ -498,64 +568,57 @@ function FeatureDeepDive() {
                             />
                         </div>
 
-                        <div className="flex-1 relative min-h-[500px] md:min-h-[400px] overflow-y-auto">
+                        <div className="flex-1 relative min-h-[400px] overflow-y-auto">
                             {deepDive.map((item, i) => (
                                 <div
                                     key={i}
                                     ref={(el) => { panelsRef.current[i] = el; }}
-                                    className="inset-0 flex flex-col md:flex-row gap-8 md:gap-16 items-center md:absolute"
+                                    className="inset-0 flex flex-col md:flex-row gap-6 md:gap-16 items-start md:items-center absolute"
                                     style={{ opacity: i === 0 ? 1 : 0 }}
                                 >
-                                    <div className="flex-1">
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <div className="w-10 h-10 rounded-xl bg-primary/20 text-primary flex items-center justify-center">
+                                    <div className="flex-1 w-full">
+                                        <div className="flex items-center gap-3 mb-3 md:mb-4">
+                                            <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-primary/20 text-primary flex items-center justify-center">
                                                 {ICON_MAP[item.visual?.icon || item.icon]}
                                             </div>
-                                            <span className="font-inter text-xs font-medium text-primary tracking-widest uppercase">
+                                            <span className="font-inter text-[10px] md:text-xs font-medium text-primary tracking-widest uppercase">
                                                 {item.subtitle}
                                             </span>
                                         </div>
-                                        <h3 className="font-manrope font-bold text-white text-2xl md:text-3xl mb-4 leading-snug">
+                                        <h3 className="font-manrope font-bold text-white text-xl md:text-3xl mb-3 md:mb-4 leading-snug">
                                             {item.title}
                                         </h3>
-                                        <p className="font-inter text-sm text-white/60 leading-relaxed mb-6 max-w-xl">
+                                        <p className="font-inter text-sm text-white/60 leading-relaxed mb-4 md:mb-6 max-w-xl">
                                             {item.description}
                                         </p>
-                                        <div className="space-y-3">
+                                        <div className="space-y-2 md:space-y-3">
                                             {item.steps.map((step, si) => (
-                                                <div
-                                                    key={si}
-                                                    className="flex items-start gap-3"
-                                                >
-                                                    <div className="w-6 h-6 rounded-full bg-primary/20 text-primary text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">
+                                                <div key={si} className="flex items-start gap-2 md:gap-3">
+                                                    <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-primary/20 text-primary text-[10px] md:text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">
                                                         {si + 1}
                                                     </div>
-                                                    <span className="font-inter text-sm text-white/70">
-                                                        {step}
-                                                    </span>
+                                                    <span className="font-inter text-xs md:text-sm text-white/70">{step}</span>
                                                 </div>
                                             ))}
                                         </div>
                                     </div>
                                     <div className="flex-1 w-full max-w-sm">
-                                        <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm">
-                                            <div
-                                                className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.visual?.color || "from-primary to-orange-600"} flex items-center justify-center mb-6`}
-                                            >
-                                                <div className="text-white">
+                                        <div className="bg-white/5 border border-white/10 rounded-2xl md:rounded-3xl p-6 md:p-8 backdrop-blur-sm">
+                                            <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-primary flex items-center justify-center mb-4 md:mb-6">
+                                                <div className="text-white scale-[0.85] md:scale-100">
                                                     {ICON_MAP[item.visual?.icon || item.icon]}
                                                 </div>
                                             </div>
-                                            <h4 className="font-manrope font-bold text-white text-lg mb-3">
+                                            <h4 className="font-manrope font-bold text-white text-base md:text-lg mb-2 md:mb-3">
                                                 {item.title}
                                             </h4>
-                                            <p className="font-inter text-sm text-white/50 leading-relaxed">
+                                            <p className="font-inter text-xs md:text-sm text-white/50 leading-relaxed">
                                                 {item.steps.slice(0, 2).join(" → ")}
                                             </p>
-                                            <div className="mt-6 pt-6 border-t border-white/10">
+                                            <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-white/10">
                                                 <div className="flex items-center gap-2 text-primary">
-                                                    <ArrowRight size={16} />
-                                                    <span className="font-inter text-xs font-medium">
+                                                    <ArrowRight size={14} />
+                                                    <span className="font-inter text-[10px] md:text-xs font-medium">
                                                         Used by {stats[1].value}+ businesses
                                                     </span>
                                                 </div>

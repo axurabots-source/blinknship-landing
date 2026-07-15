@@ -58,10 +58,10 @@ export default function Footer() {
     return (
         <footer
             ref={sectionRef}
-            className="bg-dark pt-20 overflow-hidden"
+            className="bg-dark pt-16 md:pt-20 overflow-hidden"
         >
             <div className="max-w-7xl mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-white/10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12 pb-10 md:pb-16 border-b border-white/10">
                     <div className="lg:col-span-2">
                         <div className="flex items-center gap-2.5 mb-5">
                             <img src="/logo.png" alt="Blink N Ship" className="h-8 w-auto rounded-lg" />
@@ -97,7 +97,7 @@ export default function Footer() {
                     ))}
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-6">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 py-4 md:py-6">
                     <p className="font-inter text-xs text-white/25">
                         &copy; {new Date().getFullYear()} Blink N Ship. All rights reserved. Built by Axura Bots.
                     </p>
@@ -111,11 +111,11 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div ref={bigTextRef} className="relative mt-4 w-full overflow-hidden h-28 sm:h-40 md:h-44 lg:h-56 flex items-end justify-center">
-                <div className="absolute inset-0 bg-gradient-to-r from-dark/40 via-transparent to-dark/40 z-10 pointer-events-none" />
+            <div ref={bigTextRef} className="relative mt-1 md:mt-4 w-full h-24 sm:h-32 md:h-40 lg:h-52 flex items-end justify-center">
+                <div className="absolute inset-0 bg-gradient-to-r from-dark/20 via-transparent to-dark/20 z-10 pointer-events-none" />
 
                 <h2
-                    className="font-manrope font-extrabold text-center select-none pointer-events-none whitespace-nowrap leading-[0.8] tracking-[-0.05em] bg-gradient-to-b from-white/30 to-transparent bg-clip-text text-transparent text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] xl:text-[14rem]"
+                    className="font-manrope font-extrabold text-center select-none pointer-events-none whitespace-nowrap leading-[0.7] tracking-[-0.04em] bg-gradient-to-b from-white/40 to-white/5 bg-clip-text text-transparent text-6xl sm:text-7xl md:text-8xl lg:text-[12rem] xl:text-[14rem]"
                 >
                     BLINK N SHIP
                 </h2>
