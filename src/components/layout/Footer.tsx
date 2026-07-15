@@ -24,6 +24,7 @@ const FOOTER_LINKS: Record<string, { label: string; href: string }[]> = {
         { label: "Privacy Policy", href: "/privacy" },
         { label: "Terms of Service", href: "/terms" },
         { label: "Refund Policy", href: "/refund" },
+        { label: "Sitemap", href: "/sitemap.xml" },
     ],
 };
 
@@ -41,11 +42,11 @@ export default function Footer() {
                     opacity: 1,
                     y: 0,
                     scale: 1,
-                    duration: 1.4,
-                    ease: "power3.out",
+                    duration: 0.5,
+                    ease: "power2.out",
                     scrollTrigger: {
                         trigger: bigTextRef.current,
-                        start: "top 90%",
+                        start: "top 95%",
                         toggleActions: "play none none none",
                     },
                 }

@@ -173,12 +173,12 @@ function PrivacyScrollText() {
             </div>
 
             <div ref={textRef} className="flex whitespace-nowrap will-change-transform">
-                <h2 className="font-manrope font-extrabold text-white/10 text-[clamp(3rem,12vw,12rem)] leading-none tracking-[-0.03em] select-none pr-12">
+                <span className="font-manrope font-extrabold text-white/10 text-[clamp(3rem,12vw,12rem)] leading-none tracking-[-0.03em] select-none pr-12" aria-hidden="true">
                     ✦ YOUR DATA YOUR RULES ✦ YOUR DATA YOUR RULES ✦ YOUR DATA YOUR RULES ✦
-                </h2>
-                <h2 className="font-manrope font-extrabold text-white/10 text-[clamp(3rem,12vw,12rem)] leading-none tracking-[-0.03em] select-none">
+                </span>
+                <span className="font-manrope font-extrabold text-white/10 text-[clamp(3rem,12vw,12rem)] leading-none tracking-[-0.03em] select-none" aria-hidden="true">
                     ✦ YOUR DATA YOUR RULES ✦ YOUR DATA YOUR RULES ✦ YOUR DATA YOUR RULES ✦
-                </h2>
+                </span>
             </div>
 
             <div className="relative max-w-4xl mx-auto px-6 mt-[-1rem]">

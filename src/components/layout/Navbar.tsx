@@ -34,6 +34,7 @@ export default function Navbar() {
         <>
             <motion.nav
                 ref={navRef}
+                aria-label="Main navigation"
                 initial={{ y: -80, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -63,6 +64,7 @@ export default function Navbar() {
                                 <Link
                                     key={link.label}
                                     href={link.href}
+                                    aria-current={pathname === link.href ? "page" : undefined}
                                     className={`font-inter text-sm font-medium transition-colors duration-200 relative group cursor-pointer ${pathname === link.href ? "text-[#0a0a0a]" : "text-[#737373] hover:text-[#0a0a0a]"}`}
                                 >
                                     {link.label}
@@ -109,6 +111,8 @@ export default function Navbar() {
                     <motion.button
                         whileTap={{ scale: 0.9 }}
                         onClick={() => setMobileOpen(!mobileOpen)}
+                        aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+                        aria-expanded={mobileOpen}
                         className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg border border-[#e5e5e5] text-[#0a0a0a] cursor-pointer"
                     >
                         {mobileOpen ? <X size={18} /> : <Menu size={18} />}

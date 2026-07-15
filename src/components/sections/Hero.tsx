@@ -179,7 +179,7 @@ export default function Hero() {
                 gsap.fromTo(
                     words,
                     { y: 60, opacity: 0, rotateX: -30 },
-                    { y: 0, opacity: 1, rotateX: 0, duration: 0.8, stagger: 0.06, ease: "power4.out", delay: 0.2 }
+                    { y: 0, opacity: 1, rotateX: 0, duration: 0.5, stagger: 0.04, ease: "power4.out", delay: 0.1 }
                 );
             }
 
@@ -187,7 +187,7 @@ export default function Hero() {
                 gsap.fromTo(
                     pillsRowRef.current,
                     { opacity: 0, y: 30 },
-                    { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 1.1 }
+                    { opacity: 1, y: 0, duration: 0.5, ease: "power3.out", delay: 0.5 }
                 );
             }
         }, containerRef);
@@ -319,11 +319,9 @@ export default function Hero() {
             </motion.div>
 
             {/* Heading — no z-index weaving, all content above snake */}
-            <div
+            <h1
                 ref={headingRef}
                 className="relative w-full max-w-5xl mx-auto mb-6 px-2 py-6 flex flex-wrap items-center justify-center gap-x-2 z-10"
-                role="heading"
-                aria-level={1}
             >
                 <span className="word font-manrope font-extrabold text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.15] tracking-tight select-none"
                     style={{ color: "#CC785C", opacity: 0 }}>One</span>
@@ -340,7 +338,7 @@ export default function Hero() {
                     style={{ color: "#CC785C", opacity: 0 }}>Zero</span>
                 <span className="word font-manrope font-extrabold text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.15] tracking-tight select-none"
                     style={{ color: "#0a0a0a", opacity: 0 }}>Chaos.</span>
-            </div>
+            </h1>
 
             <motion.p
                 initial={{ opacity: 0, y: 20 }}

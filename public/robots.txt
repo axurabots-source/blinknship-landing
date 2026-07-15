@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /_next/static/
+
+Sitemap: https://blinknship.com/sitemap.xml
