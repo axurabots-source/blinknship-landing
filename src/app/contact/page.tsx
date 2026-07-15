@@ -19,6 +19,7 @@ import {
 import { CONTACT_PAGE, FAQ_PAGE } from "@/constants";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import ContactPageSchema from "@/components/seo/ContactPageSchema";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -475,6 +476,7 @@ function ContactCTA() {
 export default function ContactPage() {
     return (
         <main>
+            <ContactPageSchema />
             <Navbar />
             <ContactHero />
             <ContactChannels />

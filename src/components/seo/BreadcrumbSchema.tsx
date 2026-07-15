@@ -18,8 +18,6 @@ export default function BreadcrumbSchema() {
     const pathname = usePathname();
     const segments = pathname.split("/").filter(Boolean);
 
-    if (segments.length === 0) return null;
-
     const itemListElement = [
         {
             "@type": "ListItem",

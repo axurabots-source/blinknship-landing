@@ -16,7 +16,7 @@ export default function SoftwareAppSchema() {
                 priceValidUntil: new Date(
                     new Date().setFullYear(new Date().getFullYear() + 1)
                 ).toISOString(),
-                description: "Starter plan",
+                description: "Starter plan — $5/month for individual sellers",
             },
             {
                 "@type": "Offer",
@@ -25,7 +25,7 @@ export default function SoftwareAppSchema() {
                 priceValidUntil: new Date(
                     new Date().setFullYear(new Date().getFullYear() + 1)
                 ).toISOString(),
-                description: "Growth plan",
+                description: "Growth plan — $9/month for growing businesses",
             },
             {
                 "@type": "Offer",
@@ -34,19 +34,21 @@ export default function SoftwareAppSchema() {
                 priceValidUntil: new Date(
                     new Date().setFullYear(new Date().getFullYear() + 1)
                 ).toISOString(),
-                description: "Business plan",
+                description: "Business plan — $19/month for teams and inventory",
             },
         ],
         featureList: [
-            "AI Order Extraction from WhatsApp, Facebook, Instagram",
-            "One-Click Courier Booking (12+ services)",
-            "Real-Time Inventory Management",
-            "Financial Ledger with Auto-Reconciliation",
-            "Team Management with Role-Based Permissions",
-            "Analytics & Revenue Reports",
+            "AI Order Extraction from WhatsApp, Facebook, and Instagram DMs",
+            "One-Click Courier Booking across 12+ services in Pakistan",
+            "Real-Time Inventory Management with low-stock alerts",
+            "Financial Ledger with automatic reconciliation and P&L statements",
+            "Team Management with role-based permissions and activity logs",
+            "Analytics dashboards with revenue trends, profit margins, and customer insights",
         ],
         browserRequirements: "Requires modern web browser",
         softwareVersion: "1.0",
+        applicationSuite: "Blink N Ship",
+        countryOfOrigin: "PK",
     };
 
     return (

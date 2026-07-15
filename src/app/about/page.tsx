@@ -23,6 +23,7 @@ import {
 import { ABOUT_PAGE } from "@/constants";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AboutPageSchema from "@/components/seo/AboutPageSchema";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -570,6 +571,7 @@ function AboutCTA() {
 export default function AboutPage() {
     return (
         <main>
+            <AboutPageSchema />
             <Navbar />
             <AboutHero />
             <ScrollText />

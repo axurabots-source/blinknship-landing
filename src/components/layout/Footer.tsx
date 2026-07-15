@@ -11,8 +11,8 @@ const FOOTER_LINKS: Record<string, { label: string; href: string }[]> = {
     Product: [
         { label: "Features", href: "/features" },
         { label: "How It Works", href: "/how-it-works" },
-        { label: "Pricing", href: "/#pricing" },
-        { label: "FAQ", href: "/#faq" },
+        { label: "Pricing", href: "/pricing" },
+        { label: "FAQ", href: "/faq" },
     ],
     Company: [
         { label: "About", href: "/about" },

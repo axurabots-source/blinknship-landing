@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 const title = "Refund Policy";
 const description =
-    "Blink N Ship refund policy. Learn about our refund process, cancellation terms, and how we handle returns and disputes for our ecommerce operations platform.";
+    "Read the Blink N Ship refund policy. Learn about our 30-day money-back guarantee, cancellation process, how refunds are processed, and exceptions. We make refunds simple and transparent for all our customers.";
 
 export const metadata: Metadata = {
     title,
@@ -10,7 +10,8 @@ export const metadata: Metadata = {
     alternates: { canonical: "https://blinknship.com/refund" },
     openGraph: {
         title: `${title} — Blink N Ship`,
-        description,
+        description:
+            "Blink N Ship refund policy — 30-day money-back guarantee, easy cancellation, and transparent refund process. No hidden terms, no hassle. Learn how refunds work.",
         url: "https://blinknship.com/refund",
         images: [
             {
@@ -23,13 +24,20 @@ export const metadata: Metadata = {
     },
     twitter: {
         title: `${title} — Blink N Ship`,
-        description,
+        description:
+            "Blink N Ship refund policy — 30-day money-back guarantee, easy cancellation, and transparent refund process.",
         images: ["/og-image.png"],
     },
     robots: {
         index: true,
         follow: true,
     },
+    keywords: [
+        "Blink N Ship refund",
+        "ecommerce software refund policy",
+        "courier booking refund",
+        "SaaS refund Pakistan",
+    ],
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

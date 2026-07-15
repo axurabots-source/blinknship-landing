@@ -21,6 +21,7 @@ import {
 import { FAQ_PAGE } from "@/constants";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import FAQSchema from "@/components/seo/FAQSchema";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -329,9 +330,14 @@ function FaqCTA() {
 }
 
 /* ─── Page ─── */
+const faqItems = FAQ_PAGE.categories.flatMap((cat) =>
+    cat.items.map((item) => ({ question: item.q, answer: item.a }))
+);
+
 export default function FaqPage() {
     return (
         <main>
+            <FAQSchema items={faqItems} />
             <Navbar />
             <FaqHero />
             <FaqAccordion />
